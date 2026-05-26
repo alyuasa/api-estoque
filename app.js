@@ -4,6 +4,15 @@ const db = require('./mysql');
 
 app.use(express.json());
 
+app.get('/produtos', async (req, res) => {
+    try {
+        const [produtos] = await db.query('SELECT * FROM produtos');
+        res.status(200).json(produtos);
+    } catch (erro) {
+        console.error(erro);
+        res.status(500).json({ erro: 'Erro ao buscar dados do banco'});
+    }
+});
 
 app.get('/vw_estoque', async (req, res) => {
     try {
@@ -14,6 +23,7 @@ app.get('/vw_estoque', async (req, res) => {
         res.status(500).json({ erro: 'Erro ao buscar dados do banco'});
     }
 });
+
 
 app.use((req, res, next) => {
     const error = new Error('Rota não encontrada');
