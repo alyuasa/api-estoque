@@ -21,15 +21,8 @@ app.use((req, res, next) => {
     next(error);
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
-})
-
-
-app.listen(3000, () => {
-    console.log(`Servidor FORÇADO na porta 3000`);
+app.use((error, req, res, next) => {
+    res.status(error.status || 500).json({ erro: error.message });
 });
-
 
 module.exports = app;
