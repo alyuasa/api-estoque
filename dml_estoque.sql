@@ -1,6 +1,3 @@
-SELECT * FROM produtos;
-
-
 INSERT INTO produtos (nome, categoria, quantidade, valor)
 VALUES ("camiseta", "roupas", 150, 39.90),
 	   ("condicionador", "higiene", 90, 15.70),
@@ -13,4 +10,10 @@ SELECT id_produto,
        ROUND(quantidade * valor, 2) AS valor_total
 FROM produtos;
 
-SELECT * FROM vw_estoque;
+SELECT * FROM produtos;
+SELECT * FROM movimentacoes ORDER BY data DESC;
+
+
+
+
+
